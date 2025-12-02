@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Amity – The Shared Identity Collective</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #1c1c22;   /* lighter background */
+      --fg: #f4f4f4;
+      --accent: #ff2e9f;
+      --muted: #9a9a9a;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --max-width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #2a2a33 0, var(--bg) 60%);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(28,28,34,0.85);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-img {
+      height: 32px;
+      width: auto;
+      filter: brightness(1.1);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    nav a {
+      color: var(--fg);
+      opacity: 0.75;
+    }
+    nav a:hover { opacity: 1; }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 5vw, 3.5rem);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    p { margin-bottom: 1rem; max-width: 46rem; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2rem;
+      align-items: center;
+      padding-top: 3rem;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--fg);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .btn:hover { filter: brightness(1.1); }
+
+    .hero-badge {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 1rem 1.2rem;
+      background: radial-gradient(circle at top left, rgba(255,46,159,0.18), rgba(0,0,0,0.2));
+    }
+
+    .hero-badge-main { font-size: 0.9rem; }
+
+    .three-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+      gap: 1.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.09);
+      padding: 1rem;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .card-title {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+
+    .pill {
+      padding: 0.3rem 0.7rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .join-box {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 1.6rem;
+      background: radial-gradient(circle at top, rgba(255,46,159,0.18), rgba(0,0,0,0.25));
+      max-width: 40rem;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.8rem 1.5rem 3rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    @media(max-width:720px){
+      .hero { grid-template-columns: 1fr; }
+      nav ul { display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="logo">
+        <img src="amity-logo.png" alt="Amity logo" class="logo-img">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#how">How</a></li>
+          <li><a href="#collective">Collective</a></li>
+          <li><a href="#join">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="top">
+      <div class="hero">
+        <div>
+          <div class="hero-tagline">One card · Many bodies · No identity</div>
+          <h1>Amity is a shared identity that confuses loyalty systems.</h1>
+          <p class="hero-sub">
+            Loyalty programmes rely on clean, individual data.  
+            Amity disrupts this by distributing identity across many people —  
+            confusing algorithms, corrupting predictions and redefining what loyalty means.
+          </p>
+          <a href="#join" class="btn">Join the collective</a>
+        </div>
+
+        <div class="hero-badge">
+          <div class="hero-badge-label">Data snapshot</div>
+          <div class="hero-badge-main">
+            3 loyalty schemes · 9 bodies · 1 identity  
+            <br><span class="muted">Result: profile unreadable.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">About</div>
+      <h2>What is Amity?</h2>
+      <p>
+        Amity is a collective alias: many individuals use a single loyalty identity, generating  
+        contradictory data trails that destabilise supermarket profiling systems.
+      </p>
+
+      <div class="three-cols">
+        <div class="card">
+          <div class="card-title">Anonymity</div>
+          <p>Amity conceals the individual behind a shared customer mask.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Collectivity</div>
+          <p>Points, rewards and identity are pooled and redistributed.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Disruption</div>
+          <p>Behavioural prediction breaks down when one person becomes many.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section id="how">
+      <div class="section-label">System</div>
+      <h2>How Amity intervenes</h2>
+      <p>
+        Loyalty systems depend on consistent identity.  
+        Amity introduces inconsistency, confusion and contradiction.
+      </p>
+
+      <div class="three-cols">
+        <div class="card">
+          <div class="card-title">01 · Registration</div>
+          <p>Amity is signed up to Tesco, Sainsbury’s, Morrisons and more.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">02 · Multiplicity</div>
+          <p>Many bodies shop as Amity, producing chaotic behavioural signals.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">03 · Breakdown</div>
+          <p>Algorithms attempt to personalise but fail — data becomes unreadable.</p>
+        </div>
+      </div>
+
+      <div class="pill-row">
+        <div class="pill">Identity glitch</div>
+        <div class="pill">Collective loyalty</div>
+        <div class="pill">Anti-personalisation</div>
+      </div>
+    </section>
+
+    <!-- COLLECTIVE -->
+    <section id="collective">
+      <div class="section-label">Collective</div>
+      <h2>The Amity Collective</h2>
+      <p>Those who choose to share the identity shape how Amity behaves.</p>
+
+      <div class="three-cols">
+        <div class="card">
+          <div class="card-title">Rules</div>
+          <ul>
+            <li>Anyone may “be” Amity temporarily.</li>
+            <li>No single owner. No fixed self.</li>
+            <li>Rewards decided by committee or randomness.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Experiments</div>
+          <ul>
+            <li>Ghost receipts</li>
+            <li>Fruit sticker interventions</li>
+            <li>Random reward allocation</li>
+            <li>Poster subvertising</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Aims</div>
+          <ul>
+            <li>Expose data extraction</li>
+            <li>Break behavioural profiling</li>
+            <li>Reimagine shared identity</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN -->
+    <section id="join">
+      <div class="section-label">Join</div>
+      <h2>Join Amity</h2>
+
+      <div class="join-box">
+        <p>Joining Amity means taking part in a speculative system of shared identity.</p>
+
+        <ul class="join-steps">
+          <li>Receive or access an Amity card.</li>
+          <li>Scan as Amity when you shop.</li>
+          <li>Your data merges into the collective profile.</li>
+          <li>Rewards redistributed through the collective.</li>
+        </ul>
+
+        <p class="muted">This is a speculative design project, not a functional service.</p>
+
+        <div style="margin-top:1rem;">
+          <a href="mailto:example@email.com" class="btn btn-outline">
+            Contact the designer
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Amity is a speculative design project exploring loyalty, identity and data.
+  </footer>
+
+</body>
+</html>
